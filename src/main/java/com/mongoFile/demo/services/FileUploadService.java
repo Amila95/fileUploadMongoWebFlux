@@ -5,13 +5,11 @@ import com.mongoFile.demo.repository.FileUploadRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import reactor.core.Disposable;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.time.Duration;
-import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -27,14 +25,13 @@ public class FileUploadService {
         ZipEntry entry = zipIn.getNextEntry();
         while (entry != null) {
             if (!entry.isDirectory()) {
-                this.extractFile(zipIn, ZipFileName, entry.getName());
+               this.extractFile(zipIn, ZipFileName, entry.getName());
             }
             zipIn.closeEntry();
             entry = zipIn.getNextEntry();
 
         }
         zipIn.close();
-
 
     }
 
@@ -62,9 +59,8 @@ public class FileUploadService {
             fileDetails.setFileName(fileName);
             fileDetails.setZipFileName(zipFileName);
             fileDetails.setCountryCode(line);
-            fileUploadRepository.save(fileDetails);
+            fileUploadRepository.save(fileDetails).subscribe();
         }
-
 
     }
 

@@ -8,51 +8,52 @@ import java.util.Objects;
 @Document
 public class FileUpload {
     @Id
-    private Long id;
+    private String id;
 
-    String ZipFileName;
-    String FileName;
-    String Country;
-    String CountryCode;
+    String zipFileName;
+    String fileName;
+    String country;
+    String countryCode;
 
-    public Long getId() {
+    public String
+    getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
     public String getZipFileName() {
-        return ZipFileName;
+        return zipFileName;
     }
 
     public void setZipFileName(String zipFileName) {
-        ZipFileName = zipFileName;
+        this.zipFileName = zipFileName;
     }
 
     public String getFileName() {
-        return FileName;
+        return fileName;
     }
 
     public void setFileName(String fileName) {
-        FileName = fileName;
+        this.fileName = fileName;
     }
 
     public String getCountry() {
-        return Country;
+        return country;
     }
 
     public void setCountry(String country) {
-        Country = country;
+        this.country = country;
     }
 
     public String getCountryCode() {
-        return CountryCode;
+        return countryCode;
     }
 
     public void setCountryCode(String countryCode) {
-        CountryCode = countryCode;
+        this.countryCode = countryCode;
     }
 
     @Override
